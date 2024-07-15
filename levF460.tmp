@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://p4lygbwqstar"]
+
+[ext_resource type="PackedScene" uid="uid://41hg26xg8q7p" path="res://player.tscn" id="1_u5628"]
+[ext_resource type="Script" path="res://main.gd" id="1_ubf85"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_28rpm"]
+size = Vector3(1, 1, 11)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g5nji"]
+
+[node name="level_1" type="Node3D"]
+script = ExtResource("1_ubf85")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(8.14, 0, 0, 0, 8.14, 0, 0, 0, 8.14, 5.79949, 0, 0)
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(11.638, 0, 0, 0, 0.1, 0, 0, 0, 1.1, 0, 0, 0)
+shape = SubResource("BoxShape3D_28rpm")
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(5.79, 0, 0, 0, 5.79, 0, 0, 0, 5.79, 0, 0, 0)
+mesh = SubResource("PlaneMesh_g5nji")
+
+[node name="Player" parent="." instance=ExtResource("1_u5628")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.80877, -0.0137258, 0.00165462)
+
+[node name="Camera3D2" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.876517, 0.481371, 0, -0.481371, 0.876517, 0.0298724, 4.51131, 5.96077)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, -3.59989e-21, 4.37114e-08, 1.91069e-15, 1, 1, 4.37114e-08, -4.37114e-08, 5.305, 7, 0)
