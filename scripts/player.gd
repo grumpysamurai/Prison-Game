@@ -9,9 +9,9 @@ var dragposition : Vector2
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _physics_process(delta):
-	print(position.x)
 	if ismoving == true:
 		global_transform.origin.x = dragposition.x / 30 + 1
+	position.z -= SPEED * delta
 	move_and_slide()
 
 func _input(event):
