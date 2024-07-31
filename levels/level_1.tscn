@@ -1,11 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://p4lygbwqstar"]
+[gd_scene load_steps=7 format=3 uid="uid://p4lygbwqstar"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_5s8nt"]
 [ext_resource type="PackedScene" uid="uid://41hg26xg8q7p" path="res://scenes/player.tscn" id="2_e8inv"]
 [ext_resource type="Script" path="res://levels/CharacterBody3D.gd" id="3_iq21i"]
-[ext_resource type="PackedScene" uid="uid://djp3kitoo8i4x" path="res://scenes/gate.tscn" id="4_236j5"]
+[ext_resource type="PackedScene" uid="uid://oyqd4w40jf34" path="res://assets/mobilegame.glb" id="4_skuux"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_xsfrh"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_fwue4"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
 [node name="level" type="Node3D"]
 script = ExtResource("1_5s8nt")
@@ -14,21 +17,22 @@ script = ExtResource("1_5s8nt")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.20856, -0.0137258, -6.49493)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-4.37114e-08, 1, -3.59989e-21, 4.37114e-08, 1.91069e-15, 1, 1, 4.37114e-08, -4.37114e-08, 9.05836, 9.99979, 0)
+transform = Transform3D(-4.37114e-08, 1, -3.59989e-21, 4.37114e-08, 1.91069e-15, 1, 1, 4.37114e-08, -4.37114e-08, -2.51906, 11.3875, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.764629, 0.644471, 0, -0.644471, 0.764629, 9.803, 19.328, 4.272)
 
 [node name="neccesarywidth" type="MeshInstance3D" parent="."]
 transform = Transform3D(9.9, 0, 0, 0, 9.9, 0, 0, 0, 52.9779, 9.97851, 0.0373058, -52.9552)
 mesh = SubResource("PlaneMesh_xsfrh")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="neccesarywidth"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="neccesarywidth/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_fwue4")
+
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 script = ExtResource("3_iq21i")
 
-[node name="Node3D" parent="." instance=ExtResource("4_236j5")]
-transform = Transform3D(1.24, 0, 0, 0, 1.24, 0, 0, 0, 1.24, 3.87744, 0, -16.3811)
-
-[node name="Node3D2" parent="." instance=ExtResource("4_236j5")]
-transform = Transform3D(1.24, 0, 0, 0, 1.24, 0, 0, 0, 1.24, 15.1301, 0, -16.3811)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.764629, 0.644471, 0, -0.644471, 0.764629, 9.803, 19.328, 4.27197)
-fov = 88.0
+[node name="mobilegame" parent="." instance=ExtResource("4_skuux")]
+transform = Transform3D(-1, -8.74228e-08, 0, -8.74228e-08, 1, 0, 0, 0, 1, 13, 1.91792, -25.9757)
