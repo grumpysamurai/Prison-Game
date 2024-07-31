@@ -4,9 +4,9 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jyqhp"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f1222"]
-radius = 1.0
-height = 4.0
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rmdvc"]
+radius = 1.05496
+height = 4.46982
 
 [node name="Player" type="CharacterBody3D"]
 axis_lock_angular_z = true
@@ -17,5 +17,5 @@ transform = Transform3D(2.065, 0, 0, 0, 2.272, 0, 0, 0, 2.065, 0, 2.06548, 0)
 mesh = SubResource("CapsuleMesh_jyqhp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("CapsuleShape3D_f1222")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0213959, 2.11248, -0.0192468)
+shape = SubResource("CapsuleShape3D_rmdvc")

@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://djp3kitoo8i4x"]
+[gd_scene load_steps=6 format=3 uid="uid://djp3kitoo8i4x"]
+
+[ext_resource type="Script" path="res://scenes/gate.gd" id="1_rvc2m"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iwmtj"]
 depth_draw_mode = 2
@@ -9,8 +11,12 @@ albedo_color = Color(0.303233, 0.303233, 0.303233, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l1tqg"]
 albedo_color = Color(0.231373, 0.431373, 0.694118, 1)
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_3cgjk"]
+size = Vector3(19, 15, 1)
+
+[node name="Gate" type="Node3D"]
 transform = Transform3D(1.24, 0, 0, 0, 1.24, 0, 0, 0, 1.24, -0.712904, -0.0355759, -0.0114861)
+script = ExtResource("1_rvc2m")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 4.39617, 0, 0, 0, 1, -2.44392, 2.19057, 0)
@@ -32,3 +38,11 @@ mesh = SubResource("BoxMesh_w1iri")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.357866, 2.29114, 1.21538e-07)
 text = "Hello"
 font_size = 242
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.31, 0, 0, 0, 0.31, 0, 0, 0, 0.31, 0.31, 2.17, 0)
+shape = SubResource("BoxShape3D_3cgjk")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
